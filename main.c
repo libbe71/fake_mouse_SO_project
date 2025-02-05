@@ -1,17 +1,25 @@
 #include <util/delay.h>
 #include <stdio.h>
 #include "./avr_common/uart.h" // this includes the printf and initializes it
-#include <avr/io.h>
+#include "./keyboard/keyboard.h" 
 #include <stdint.h>
+
+#define COLS 4
+#define ROWS 4
+#define ALLOW_HOLD 1
 
 
 int main(void){
-  // this initializes the printf/uart thingies
+  char keys[] = { '1', '2', '3', 'A', '4', '5', '6', 'B', '7', '8', '9', 'C', '*', '0', '#', 'D' };
+
   printf_init(); 
-  int k=0;
-  while(1){
-    printf("hello %d\n",++k);
-    _delay_ms(1000); // from delay.h, wait 1 sec
+  initKeyboardPortF(COLS, ROWS);
+
+  while (1) {
+      int index = scanKeyboardPortF(COLS, ROWS, ALLOW_HOLD);
+      if (index != -1) {
+          printf("Key pressed: %c\n", keys[index]);
+          _delay_ms(50);  
+      }
   }
-  
 }
