@@ -20,14 +20,14 @@ int main(void) {
         //Up
         uart_transmit(0x4C);
         uart_transmit(0x00);
-        uart_transmit(0x20);
+        uart_transmit(0x38);
         _delay_ms(50);  
       }
       else if(keys[index] == '4') {
 
         //Left
         uart_transmit(0x43);
-        uart_transmit(0x2A);
+        uart_transmit(0x38);
         uart_transmit(0x00);
         _delay_ms(50);  
       }
@@ -35,13 +35,13 @@ int main(void) {
         //down
         uart_transmit(0x40);
         uart_transmit(0x00);
-        uart_transmit(0x2A);
+        uart_transmit(0x07);
         _delay_ms(50);  
       }
       else if(keys[index] == '6') {
         //right
         uart_transmit(0x40);
-        uart_transmit(0x2A);
+        uart_transmit(0x07);
         uart_transmit(0x00);
         _delay_ms(50);  
       }
