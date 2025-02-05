@@ -14,3 +14,5 @@ LB is the state of the left button (1 means down)
 RB is the state of the right button (1 means down)
 X7-X0 movement in X direction since last packet (signed byte)
 Y7-Y0 movement in Y direction since last packet (signed byte)
+
+source: https://roborooter.com/post/serial-mice/
