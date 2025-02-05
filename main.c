@@ -13,9 +13,9 @@
 char keys[] = { '1', '2', '3', 'A', '4', '5', '6', 'B', '7', '8', '9', 'C', '*', '0', '#', 'D' };
 int main(void) {
     uart_init();
-    initKeyboardPortF(4, 4);
+    initKeyboardPortF(COLS, ROWS);
     while (1) {
-      int index = scanKeyboardPortF(4, 4, 1);
+      int index = scanKeyboardPortF(COLS, ROWS, ALLOW_HOLD);
       if (keys[index] == '2') {
         //Up
         uart_transmit(0x4C);
@@ -24,7 +24,6 @@ int main(void) {
         _delay_ms(50);  
       }
       else if(keys[index] == '4') {
-
         //Left
         uart_transmit(0x43);
         uart_transmit(0x38);
