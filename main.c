@@ -53,6 +53,28 @@ int main(void) {
         uart_transmit(0x00);
           _delay_ms(50);  
       }
+      else if(keys[index] == '1') {
+         //right
+        uart_transmit(0x60);
+        uart_transmit(0x00);
+        uart_transmit(0x00);
+          _delay_ms(300);  
+
+        uart_transmit(0x40);
+        uart_transmit(0x00);
+        uart_transmit(0x00);
+      }
+      else if(keys[index] == '3') {
+         //right
+        uart_transmit(0x50);
+        uart_transmit(0x00);
+        uart_transmit(0x00);
+          _delay_ms(300);  
+
+        uart_transmit(0x40);
+        uart_transmit(0x00);
+        uart_transmit(0x00);
+      }
     }
 
     return 0;
