@@ -40,5 +40,9 @@ include ./avr_common/avr.mk
 
 # !!!!!!!!!!!!!!!! MODIFY HERE !!!!!!!!!!!!!!!! 
 
+connect:
+	sudo inputattach --baud 9600 --microsoft /dev/ttyACM2
+	
+
 
 
