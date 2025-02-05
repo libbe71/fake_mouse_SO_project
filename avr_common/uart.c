@@ -6,11 +6,7 @@
 #include <avr/interrupt.h>
 #include <stdio.h>
 #include <stdbool.h>
-// ********************************************************************************
-// Macros and Defines
-// ********************************************************************************
-#define BAUD 19600
-#define MYUBRR F_CPU/16/BAUD-1
+
 // ********************************************************************************
 // Function Prototypes
 // ********************************************************************************
@@ -31,9 +27,20 @@ void usart_init( uint16_t ubrr) {
     // Set baud rate
     UBRR0H = (uint8_t)(ubrr>>8);
     UBRR0L = (uint8_t)ubrr;
+    UCSR0B = (1 << TXEN0) | (1 << RXEN0);
+    UCSR0C = (3 << UCSZ00);
 
-    UCSR0C = _BV(UCSZ01) | _BV(UCSZ00); /* 8-bit data */ 
-    UCSR0B = _BV(RXEN0) | _BV(TXEN0) | _BV(RXCIE0);   /* Enable RX and TX */  
+}
+
+
+
+void uart_transmit(uint8_t data) {
+    while (!(UCSR0A & (1 << UDRE0)));
+    UDR0 = data;
+}
+
+void uart_transmit_int8(int8_t data) {
+    uart_transmit((uint8_t)data); // Send as raw byte
 }
 void usart_putchar(char data) {
     // Wait for empty transmit buffer
